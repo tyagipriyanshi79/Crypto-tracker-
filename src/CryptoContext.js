@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { CoinList } from "../config/api";
+import { CoinList } from "./config/api";
 const Crypto = createContext();
 
 const CryptoContext = ({ children }) => {
