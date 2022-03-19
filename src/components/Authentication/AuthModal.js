@@ -1,8 +1,7 @@
-
 import React from "react";
 import { makeStyles} from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
-import { Button } from "@material-ui/core";
+import { Button, AppBar, Tabs, Tab } from "@material-ui/core";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 
@@ -13,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   paper: {
+    width: 330,
     backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    color: "white",
+    borderRadius: 10,
   },
 }));
 
@@ -32,6 +31,11 @@ export default function AuthModal() {
     setOpen(false);
   };
 
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
   return (
     <div>
       <Button 
@@ -42,6 +46,8 @@ export default function AuthModal() {
           marginLeft: 15,
           backgroundColor: "#EEBC1D",
       }}
+
+      onClick = {handleOpen}
       >Login</Button>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -57,10 +63,29 @@ export default function AuthModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">
-              react-transition-group animates me.
-            </p>
+           <AppBar 
+                position="static"
+                style = {{backgroundColor:"transparent", color: "white"}}
+           >
+               <Tabs
+               value = {value}
+               onChange = {handleChange}
+               variant = "fullWidth"
+               style = {{borderRadius: 10}}
+               >
+                <Tabs
+                value = {value}
+                onChange = {handleChange}
+                variant = "fullwidth"
+                style = {{borderRadius: 10 }}
+                >
+                    <Tab label = "Login"/>
+                    <Tab label = "Sign Up"/>
+                </Tabs>
+               </Tabs>
+               </AppBar> 
+               {value===0 && <Login/>}
+               {value===1 && <SignUp/>}
           </div>
         </Fade>
       </Modal>
