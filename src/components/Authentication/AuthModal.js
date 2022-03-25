@@ -4,6 +4,8 @@ import Modal from "@material-ui/core/Modal";
 import { Button, AppBar, Tabs, Tab } from "@material-ui/core";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
+import Login from './Login';
+import SignUp from './SignUp';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -80,12 +82,12 @@ export default function AuthModal() {
                 style = {{borderRadius: 10 }}
                 >
                     <Tab label = "Login"/>
-                    <Tab label = "Sign Up"/>
+                    <Tab label = "SignUp"/>
                 </Tabs>
                </Tabs>
                </AppBar> 
-               {value===0 && <Login/>}
-               {value===1 && <SignUp/>}
+               {value===0 && <Login handleClose={handleClose}/>}
+               {value===1 && <SignUp handleClose={handleClose}/>}
           </div>
         </Fade>
       </Modal>
